@@ -1,4 +1,3 @@
-#include <stdio.h>
 
 class Map_cls {
     private:
@@ -12,14 +11,14 @@ class Map_cls {
 
         void clear();
         void initialize();
-        void draw(int h, int w, int obj);
+        void draw(int h, int w, char obj);
         void print();
         
         const int get_height();
         const int get_width();
 };
 
-const int Map_cls::height = 42;
+const int Map_cls::height = 22;
 const int Map_cls::width = 42;
 
 Map_cls::Map_cls(){
@@ -47,12 +46,12 @@ void Map_cls::clear(){
 void Map_cls::initialize(){
     clear();
     for(int i=0; i<height; i++){
-        map[i][0] = '▦';
-        map[i][width-1] = '▦';
+        map[i][0] = '+';
+        map[i][width-1] = '+';
     }
     for(int i=0; i<width; i++){
-        map[0][i] = '▦';
-        map[height-1][i] = '▦';
+        map[0][i] = '+';
+        map[height-1][i] = '+';
     }
 }
 
@@ -65,7 +64,7 @@ void Map_cls::print(){
     }
 }
 
-void Map_cls::draw(int h, int w, int obj){
+void Map_cls::draw(int h, int w, char obj){
     map[h][w] = obj;
 }
 

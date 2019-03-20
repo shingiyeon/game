@@ -1,8 +1,5 @@
-#include "Map_cls.h"
-#include <windows.h>
-#include <vector>
 
-typedef struct pos{
+struct pos{
     int x;
     int y;
 };
@@ -10,37 +7,27 @@ typedef struct pos{
 class Item_cls{
     private:
         pos POS;
-        static int item_num;
-        static std::vector<pos> item_list;
 
     public:
-        Item_cls();
+        Item_cls(int x, int y);
         ~Item_cls();
 
-        bool checkedPreviousItem();
-        void ItemGenerated(Map_cls& Map);
-
-
-
+        int getX();
+        int getY();
 };
 
-int Item_cls::item_num = 0;
-std::vector<pos> Item_cls::item_list = std::vector<pos>(0);
-
-bool Item_cls::checkedPreviousItem(){
-    for(int i=0; i<item_list.size(); i++){
-        if(item_list[i].x == POS.x && item_list[i].y == POS.y){
-            return true;
-        }
-    }
-    return false;
+Item_cls::Item_cls(int x, int y){
+    POS.x = x;
+    POS.y = y;
 }
 
-void Item_cls::ItemGenerated(Map_cls& map){
-    do{
-        // x : 1 ~ height - 1
-        POS.x = (rand() % (map.get_height() - 2)) + 1;
-        // y : 1 ~ width - 1
-        POS.y = (rand() % (map.get_width() - 2)) + 1;
-    }while(checkedPreviousItem());
+Item_cls::~Item_cls(){
+}
+
+int Item_cls::getX(){
+    return POS.x;
+}
+
+int Item_cls::getY(){
+    return POS.y;
 }
