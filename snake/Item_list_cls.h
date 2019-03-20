@@ -13,6 +13,7 @@ class Item_list_cls{
         int getItemNum();
         void ItemGenerated(Map_cls& Map);
         void ItemDraw(Map_cls& Map);
+        bool checkedItem(int x, int y);
 };
 
 int Item_list_cls::item_num = 0;
@@ -54,4 +55,19 @@ void Item_list_cls::ItemDraw(Map_cls& map){
 
 int Item_list_cls::getItemNum(){
     return item_num;
+}
+
+bool Item_list_cls::checkedItem(int x, int y){
+    for(int i=0; i<getItemNum(); i++){
+        if(item_list[i]->getX() == x &&\
+        item_list[i]->getY() == y){
+            for(int j=i; j<getItemNum()-1; j++)
+                item_list[j] = item_list[j+1];
+
+            //pop_back can not work why?
+            item_list.pop_back();
+            return 1;
+        }
+    }
+    return 0;
 }
