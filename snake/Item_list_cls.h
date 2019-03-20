@@ -43,8 +43,8 @@ void Item_list_cls::ItemGenerated(Map_cls& map){
         POS.y = (rand() % (map.get_width() - 2)) + 1;
     }while(checkedPreviousItem(POS));
     Item_cls *item = new Item_cls(POS.x, POS.y);
-    item_num++;
     item_list.push_back(item);
+    item_num++;
 }
 
 void Item_list_cls::ItemDraw(Map_cls& map){
@@ -63,8 +63,7 @@ bool Item_list_cls::checkedItem(int x, int y){
         item_list[i]->getY() == y){
             for(int j=i; j<getItemNum()-1; j++)
                 item_list[j] = item_list[j+1];
-
-            //pop_back can not work why?
+            item_num--;
             item_list.pop_back();
             return 1;
         }
